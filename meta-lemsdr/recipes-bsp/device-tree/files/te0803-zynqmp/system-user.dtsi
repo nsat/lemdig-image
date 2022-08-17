@@ -1,0 +1,159 @@
+/include/ "system-conf.dtsi"
+/ {
+};
+
+/* default */
+
+/* SD */
+
+&sdhci1 {
+    disable-wp;
+    no-1-8-v;
+};
+
+/* ETH PHY */
+
+&gem3 {
+    phy-handle = <&phy0>;
+    phy0: phy0@0 {
+        device_type = "ethernet-phy";
+        reg = <0>;
+    };
+};
+
+/* QSPI */
+
+&qspi {
+    #address-cells = <1>;
+    #size-cells = <0>;
+    status = "okay";
+    flash0: flash@0 {
+        compatible = "jedec,spi-nor";
+        reg = <0x0>;
+        #address-cells = <1>;
+        #size-cells = <1>;
+    };
+};
+
+/* NAND */
+
+&nand0 {
+    status = "okay";
+    arasan,has-mdma;
+    nand@0 {
+        reg = <0x0>;
+        #address-cells = <0x2>;
+        #size-cells = <0x2>;
+        partition@0 {
+            /* Whole chip dedicated to ubifs */
+            label = "ubifs1";
+            reg = <0x0 0x00000000 0x1 0x00000000>;
+        };
+    };
+    nand@1 {
+        reg = <0x1>;
+        #address-cells = <0x2>;
+        #size-cells = <0x2>;
+        partition@ {
+            /* Whole chip dedicated to ubifs */
+            label = "ubifs2";
+            reg = <0x0 0x00000000 0x1 0x00000000>;
+        };
+    };
+};
+
+/* UNUSED DMA disable */
+
+&lpd_dma_chan1 {
+    status = "disabled";
+};
+&lpd_dma_chan2 {
+    status = "disabled";
+};
+&lpd_dma_chan3 {
+    status = "disabled";
+};
+&lpd_dma_chan4 {
+    status = "disabled";
+};
+&lpd_dma_chan5 {
+    status = "disabled";
+};
+&lpd_dma_chan6 {
+    status = "disabled";
+};
+&lpd_dma_chan7 {
+    status = "disabled";
+};
+&lpd_dma_chan8 {
+    status = "disabled";
+};
+
+/* Enable WDT (Watch Dog Timer) */
+&watchdog0 {
+    status = "okay";
+    reset-on-timeout;
+};
+
+&i2c0 {
+    /* LEMSDR I2C devices */
+    rf_current_33v: ina219@44 {
+        compatible = "ti,ina219";
+        reg = <0x44>;
+        shunt-resistor = <160000>;
+    };
+    rf_temp: tmp102@48 {
+        compatible = "ti,tmp102";
+        reg = <0x48>;
+    };
+    rf_eeprom: eeprom@50 {
+        compatible = "at,24c02";
+        reg = <0x50>;
+        pagesize = <0x10>;
+    };  
+};
+
+&i2c1 {
+    /* MARSUPIAL I2C devices */
+    dig_rtc: rtc@68 {
+        compatible = "ds3231";
+        reg = <0x68>;
+    };
+    dig_current: ina219@40 {
+        compatible = "ti,ina219";
+        reg = <0x40>;
+        shunt-resistor = <10000>;
+    };
+    dig_vrf_current: ina219@44 {
+        compatible = "ti,ina219";
+        reg = <0x44>;
+        shunt-resistor = <10000>;
+    };
+    dig_sd_current: ina219@43 {
+        compatible = "ti,ina219";
+        reg = <0x43>;
+        shunt-resistor = <50000>;
+    };
+    dig_nand33_current: ina219@41 {
+        compatible = "ti,ina219";
+        reg = <0x41>;
+        shunt-resistor = <50000>;
+    };
+    dig_nand18_current: ina219@42 {
+        compatible = "ti,ina219";
+        reg = <0x42>;
+        shunt-resistor = <50000>;
+    };
+    dig_mcu_temp: tmp102@4a {
+        compatible = "ti,tmp102";
+        reg = <0x4a>;
+    };
+    dig_eth_temp: tmp102@4b {
+        compatible = "ti,tmp102";
+        reg = <0x4b>;
+    };
+    dig_buck_temp: tmp102@49 {
+        compatible = "ti,tmp102";
+        reg = <0x49>;
+    };
+};

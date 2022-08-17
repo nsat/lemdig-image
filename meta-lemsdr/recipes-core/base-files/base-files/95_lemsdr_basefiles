@@ -1,0 +1,2 @@
+# Additional volatiles configuration file (see meta/initscripts recipe in Poky)
+d root root 0755 /media/nand2_data/firmware none

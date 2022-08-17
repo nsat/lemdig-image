@@ -1,0 +1,11 @@
+# fstab customized with prog / data partitions, for LEMDIG1.5+
+
+/dev/root            /                    auto       ro,noatime                          1  1
+proc                 /proc                proc       defaults                            0  0
+devpts               /dev/pts             devpts     mode=0620,gid=5                     0  0
+tmpfs                /run                 tmpfs      mode=0755,nodev,nosuid,strictatime  0  0
+tmpfs                /var/volatile        tmpfs      defaults                            0  0
+
+# NAND UBIFS Partitions
+/dev/ubi0_1          /media/nand1_prog    ubifs      defaults,noatime                    0  0
+/dev/ubi1_1          /media/nand2_data    ubifs      defaults,noatime                    0  0

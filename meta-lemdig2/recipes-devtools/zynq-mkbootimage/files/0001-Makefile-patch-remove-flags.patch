@@ -1,0 +1,14 @@
+diff --git a/Makefile b/Makefile
+index a0990d9..851d051 100644
+--- a/Makefile
++++ b/Makefile
+@@ -19,6 +19,9 @@ CFLAGS += $(foreach includedir,$(MKBOOTIMAGE_INCLUDE_DIRS),-I$(includedir)) \
+ 	-Wall -Wextra -Wpedantic \
+ 	--std=c11
+ 
++CFLAGS := $(filter-out -O2,$(CFLAGS))
++CFLAGS := $(filter-out -O3,$(CFLAGS))
++
+ LDLIBS = -lpcre -lelf
+ 
+ all: $(MKBOOTIMAGE_NAME)

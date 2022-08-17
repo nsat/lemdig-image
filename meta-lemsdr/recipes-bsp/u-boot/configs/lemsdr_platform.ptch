@@ -1,0 +1,29 @@
+--- a/include/configs/platform-auto.h	2019-12-10 14:01:18.018315884 +0000
++++ b/include/configs/platform-auto.h	2020-03-02 15:12:31.419660314 +0000
+@@ -155,7 +155,7 @@
+ 	SERIAL_MULTI \
+ 	CONSOLE_ARG \
+ 	PSSERIAL0 \
+-	"ethaddr=00:0a:35:00:01:22\0" \
++	"ethaddr=00:0a:35:00:CA:FE\0" \
+ 	"autoload=no\0" \
+ 	"boot_targets=qspi0\0" \
+ 	"default_bootcmd=for target in ${boot_targets}; do " \
+@@ -164,7 +164,7 @@
+     "kernel_image=fitImage\0" \
+     "boot_image=BOOT.bin\0" \
+     "kernel_load_address=0x10000000\0" \
+-    "bootargs_base=earlycon clk_ignore_unused cma=850M uio_pdrv_genirq.of_id=generic-uio init_fatal_sh=true\0" \
++    "bootargs_base=earlycon console=ttyPS0,115200 clk_ignore_unused init_fatal_sh=true\0" \
+     "bootkernel=bootm ${kernel_load_address}\0" \
+     "kernel_qspi_offset=0x03000000\0" \
+     "kernel_qspi_length=0x02000000\0" \
+@@ -174,7 +174,7 @@
+     "loadkernel_mmc0=fatload mmc 0 ${kernel_load_address} ${kernel_image}\0" \
+     "bootargs_mmc=root=/dev/mmcblk0p2 ro rootfstype=ext4 rootwait\0" \
+     "bootcmd_mmc0=setenv bootargs \"${bootargs_base} ${bootargs_mmc}\" && run loadkernel_mmc0 && run bootkernel\0" \
+-    "ipaddr=10.2.1.3\0"  \
++    "ipaddr=10.2.1.100\0"  \
+     "serverip=10.2.1.6\0" \
+     "netmask=255.255.255.0\0" \
+     "loadkernel_tftp=tftpboot ${kernel_load_address} ${kernel_image}\0" \

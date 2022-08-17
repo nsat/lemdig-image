@@ -1,0 +1,47 @@
+diff --git drivers/mtd/nand/arasan_nand.c drivers/mtd/nand/arasan_nand.c
+index 6bbab8bf7830..b377ec4dfe0f 100644
+--- a/drivers/mtd/nand/arasan_nand.c
++++ b/drivers/mtd/nand/arasan_nand.c
+@@ -890,7 +890,9 @@ static int anfc_init_timing_mode(struct anfc *nfc,
+
+ 	memset(feature, 0, NVDDR_MODE_PACKET_SIZE);
+ 	/* Get nvddr timing modes */
+-	mode = onfi_get_sync_timing_mode(chip) & 0xff;
++	/* SPIRE HACK - Force asynchronous mode */
++	/* mode = onfi_get_sync_timing_mode(chip) & 0xff */
++	mode = onfi_get_sync_timing_mode(chip) & 0x00;
+ 	if (!mode) {
+ 		mode = fls(onfi_get_async_timing_mode(chip)) - 1;
+ 		inftimeval = mode;
+@@ -910,6 +912,22 @@ static int anfc_init_timing_mode(struct anfc *nfc,
+ 	if (err)
+ 		return err;
+
++	/* SPIRE HACK BEGIN - Force clockrate to 50 MHz */
++	clk_disable_unprepare(nfc->clk_sys);
++	err = clk_set_rate(nfc->clk_sys, 50000000);
++	if (err) {
++		dev_err(nfc->dev, "Can't set the clock rate\n");
++		return err;
++	}
++	err = clk_prepare_enable(nfc->clk_sys);
++	if (err) {
++		dev_err(nfc->dev, "Unable to enable sys clock.\n");
++		clk_disable_unprepare(nfc->clk_sys);
++		return err;
++	}
++	change_sdr_clk = false;
++	/* SPIRE HACK END - Force clockrate to 50 MHz */
++
+ 	/*
+ 	 * SDR timing modes 2-5 will not work for the arasan nand when
+ 	 * freq > 90 MHz, so reduce the freq in SDR modes 2-5 to < 90Mhz
+@@ -1019,7 +1037,7 @@ static int anfc_probe(struct platform_device *pdev)
+ 	if (!nfc)
+ 		return -ENOMEM;
+
+-	init_waitqueue_head(&nfc->controller.wq);
++	nand_hw_control_init(&nfc->controller);
+ 	INIT_LIST_HEAD(&nfc->chips);
+ 	init_completion(&nfc->event);
+ 	nfc->dev = &pdev->dev;

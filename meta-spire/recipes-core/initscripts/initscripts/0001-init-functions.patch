@@ -1,0 +1,11 @@
+--- a/functions
++++ b/functions
+@@ -25,7 +25,7 @@
+ pidofproc () {
+
+ 	# pidof output null when no program is running, so no "2>/dev/null".
+-	pid=`pidof $1`
++	pid=`pgrep -P 1 -f $1`
+ 	status=$?
+ 	case $status in
+ 	0)

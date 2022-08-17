@@ -1,0 +1,4 @@
+#! /bin/sh
+
+# Do nothing!
+# No need to check for / generate keys as we use pre-generated keys.

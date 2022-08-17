@@ -1,0 +1,11 @@
+--- a/python-dateutil-2.7.2/setup.py	2018-03-26 21:32:32.000000000 +0800
++++ b/python-dateutil-2.7.2/setup.py	2021-05-26 14:53:08.037865900 +0800
+@@ -63,7 +63,7 @@ setup(name="python-dateutil",
+       package_data={"dateutil.zoneinfo": ["dateutil-zoneinfo.tar.gz"]},
+       zip_safe=True,
+       requires=["six"],
+-      setup_requires=['setuptools_scm'],
++      setup_requires=['setuptools_scm<=5.0.2'],
+       install_requires=["six >=1.5"],  # XXX fix when packaging is sane again
+       classifiers=[
+           'Development Status :: 5 - Production/Stable',
