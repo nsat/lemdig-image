@@ -259,6 +259,13 @@ intended to be the common layer between all boards using Bitbake
 
 The name of your recipe should then be added to the packagegroup for the lemsdr in `lemdig-image/meta-lemsdr/recipes-payload/packagegroups/packagegroup-lemsdr-system.bb` 
 
+### Updating the FPGA image
+
+The default FPGA bitfile can be updated by updating the file  
+ 
+   `lemdig-image/meta-lemdsdr/recipes-bsp/bootbin-onthefly/files/design_1_wrapper.bit`
+
+with your own design
 ### Adding Python Dependencies
 
 Python dependencies are added to the meta-spire layer.

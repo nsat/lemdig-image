@@ -93,7 +93,6 @@ RDEPENDS_packagegroup-spire-utils-services = "\
     openssl \
     sysfsutils \
     openssh-sftp-server \
-    oort \
     "
 
 RDEPENDS_packagegroup-spire-utils-compression = "\    
