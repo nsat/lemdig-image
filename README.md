@@ -1,6 +1,6 @@
 # Spire Linux for LEMDIG 1.5 (marsupial)
 
-This project contains utility scripts and the Yocto bitBake layers used for building the spire Spire Linux image for the Lemdig 1.5 board
+This project contains utility scripts and the Yocto bitBake layers used for building the spire Spire Linux image for the Lemdig 1.5 board. The build produces an SD card image that can be used to flash the Marsupial.
 
 **Requirements**
 
@@ -13,16 +13,34 @@ This project contains utility scripts and the Yocto bitBake layers used for buil
 
 ## Quickstart
 
-The build runs inside a Docker container and produces an SD card image that can be used to flash the Marsupial.
+The following information should allow quick installation and building of the Spire Linux for LEMDIG 1.5
 
-The Yocto build takes place in the `/opt/lemdig-image/lemsdr/poky` directory on the Ubuntu PC and this is mapped into a volume in the Docker container, making the build system and its output accessible to both.
+### Installation
 
-1. **Build the Docker image (One time only)**
+The Ubuntu PC is required to have git installed in order to retreive the Spire Linux for LEMDIG 1.5 repo
+
+    `sudo apt install git`
+    
+Once git is installed the repository can be cloned using
+
+    `git clone https://github.com/nsat/lemdig-image.git`
+    
+This should create a git repository in the directory `lemdig-image`
+
+The build runs inside a Docker container and therefore Docker is required to be installed and the user added to the docker group.
+
+There is a script which will do this from within the `lemdig-image` directory
 
     `cd lemdig-image`  
     `./build-docker.sh`  
+    
+**NB: You must now reboot your Ubuntu PC to complete the installation of Docker**
 
-2. **Build the Spire Linux image**
+### Building
+
+The Yocto build takes place in the `/opt/lemdig-image/lemsdr/poky` directory on the Ubuntu PC and this is mapped into a volume in the Docker container, making the build system and its output accessible to both.
+
+1. **Build the Spire Linux image**
 
     `cd lemdig-image`  
     `./run.sh build`  
@@ -45,7 +63,7 @@ The Yocto build takes place in the `/opt/lemdig-image/lemsdr/poky` directory on 
 
     This file can be written to a micro SD card and flashed to the marsupial as described in step 3  
     
-3. **Flash the board using a micro SD card (Requires Min 8GB micro SD card)**
+2. **Flash the board using a micro SD card (Requires Min 8GB micro SD card)**
 
 + Ensure that the Marsupial, Minidock V3 and PSU are connected as described in the requirements. There is a toggle switch on the Minidock V3 that can be used to power on/off the Marsupial.
 
