@@ -1,0 +1,25 @@
+From 2914675043c43ff5f7d930c26c54f43fcadde256 Mon Sep 17 00:00:00 2001
+From: Dan Nechita <dan.nechita@analog.com>
+Date: Tue, 4 Feb 2020 10:56:42 +0200
+Subject: [PATCH] local: Fix the checking of the buffer size returned by kernel
+
+Fixes #190
+
+Signed-off-by: Dan Nechita <dan.nechita@analog.com>
+---
+ local.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/local.c b/local.c
+index 93322d2dc..aeb9d532e 100644
+--- a/local.c
++++ b/local.c
+@@ -508,7 +508,7 @@ static ssize_t local_get_buffer(const struct iio_device *dev,
+ 	}
+
+ 	/* Requested buffer size is too big! */
+-	if (pdata->last_dequeued < 0 && bytes_used != block.size)
++	if (pdata->last_dequeued < 0 && bytes_used > block.size)
+ 		return -EFBIG;
+
+ 	pdata->last_dequeued = block.id;

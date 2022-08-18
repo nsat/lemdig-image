@@ -1,0 +1,35 @@
+/dts-v1/;
+/include/ "zynqmp.dtsi"
+/include/ "zynqmp-clk-ccf.dtsi"
+/include/ "pl.dtsi"
+/include/ "pcw.dtsi"
+/ {
+    chosen {
+        bootargs = "earlycon clk_ignore_unused";
+        stdout-path = "serial0:115200n8";
+    };
+    aliases {
+        ethernet0 = &gem3;
+        i2c0 = &i2c0;
+        i2c1 = &i2c1;
+        /*  Map PS UARTS in the following way for compatibility with Zynq-based STRATOS:
+            PS UART0 => /dev/ttyPS1
+            PS UART1 => /dev/ttyPS0
+            See also port-number attribute of uart0/1 entries. */
+        serial0 = &uart1;
+        serial1 = &uart0;
+        spi0 = &qspi;
+        spi1 = &spi0;
+        spi2 = &spi1;
+    };
+    memory {
+        device_type = "memory";
+        reg = <0x0 0x0 0x0 0x7ff00000>;
+    };
+    cpus {
+        /delete-node/ cpu@2 ;
+        /delete-node/ cpu@3 ;
+    };
+};
+
+#include "system-user.dtsi"

@@ -1,0 +1,28 @@
+#---------------------------------------------
+# The loopback interface
+#---------------------------------------------
+auto lo
+iface lo inet loopback
+
+#---------------------------------------------
+# Ethernet
+#---------------------------------------------
+auto eth0
+iface eth0 inet static
+    address 10.2.1.100
+    netmask 255.255.255.0
+
+#---------------------------------------------
+# CAN bus
+#---------------------------------------------
+auto can0
+iface can0 inet manual
+    # NOTE: the following "ip" command should be from one in the iproute2 package,
+    # not one implemented by busybox. The latter does not work since busybox does
+    # not implement CAN-related functions. iproute2's ip command can be installed
+    # by adding iproute2 recipe as part of RDEPENDS (through packagegroup in our
+    # implementation).
+    pre-up ip link set $IFACE type can bitrate 1000000 sample-point 0.75 restart-ms 1
+    up /sbin/ifconfig $IFACE up
+    down /sbin/ifconfig $IFACE down
+    post-up ip link set $IFACE txqueuelen 1000

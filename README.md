@@ -1,6 +1,6 @@
 # Spire Linux for LEMDIG 1.5 (marsupial)
 
-This project contains utility scripts and the Yocto bitBake layers used for building the spire Spire Linux image for the Lemdig 1.5 board
+This project contains utility scripts and the Yocto bitBake layers used for building the spire Spire Linux image for the Lemdig 1.5 board. The build produces an SD card image that can be used to flash the Marsupial.
 
 **Requirements**
 
@@ -13,16 +13,34 @@ This project contains utility scripts and the Yocto bitBake layers used for buil
 
 ## Quickstart
 
-The build runs inside a Docker container and produces an SD card image that can be used to flash the Marsupial.
+The following information should allow quick installation and building of the Spire Linux for LEMDIG 1.5
 
-The Yocto build takes place in the `/opt/lemdig-image/lemsdr/poky` directory on the Ubuntu PC and this is mapped into a volume in the Docker container, making the build system and its output accessible to both.
+### Installation
 
-1. **Build the Docker image (One time only)**
+The Ubuntu PC is required to have git installed in order to retreive the Spire Linux for LEMDIG 1.5 repo
+
+    `sudo apt install git`
+    
+Once git is installed the repository can be cloned using
+
+    `git clone https://github.com/nsat/lemdig-image.git`
+    
+This should create a git repository in the directory `lemdig-image`
+
+The build runs inside a Docker container and therefore Docker is required to be installed and the user added to the docker group.
+
+There is a script which will do this from within the `lemdig-image` directory
 
     `cd lemdig-image`  
     `./build-docker.sh`  
+    
+**NB: You must now reboot your Ubuntu PC to complete the installation of Docker**
 
-2. **Build the Spire Linux image**
+### Building
+
+The Yocto build takes place in the `/opt/lemdig-image/lemsdr/poky` directory on the Ubuntu PC and this is mapped into a volume in the Docker container, making the build system and its output accessible to both.
+
+1. **Build the Spire Linux image**
 
     `cd lemdig-image`  
     `./run.sh build`  
@@ -45,7 +63,7 @@ The Yocto build takes place in the `/opt/lemdig-image/lemsdr/poky` directory on 
 
     This file can be written to a micro SD card and flashed to the marsupial as described in step 3  
     
-3. **Flash the board using a micro SD card (Requires Min 8GB micro SD card)**
+2. **Flash the board using a micro SD card (Requires Min 8GB micro SD card)**
 
 + Ensure that the Marsupial, Minidock V3 and PSU are connected as described in the requirements. There is a toggle switch on the Minidock V3 that can be used to power on/off the Marsupial.
 
@@ -69,9 +87,112 @@ The Yocto build takes place in the `/opt/lemdig-image/lemsdr/poky` directory on 
    
 + Open a serial terminal on your Ubuntu PC using the tty device found above at 115200 baud, 8N1.
    
-+ Power on the Marsupial - 
++ Power on the Marsupial - The following text should be shown in the  serial terminal
 
-+ In the serial terminal, before the board defaults to booting from NAND flash press '2' to select SD card boot then press 'p' to boot into the SD card linux image.
+```
+       (\-"""-/)
+        |     |
+        \ ^ ^ /  .-.
+         \_o_/  / /
+        /`   `\/  |
+       /       \  |
+       \ (   ) /  |
+      / \_) (_/ \ /
+     |   (\-/)   |
+     \  --^o^--  /
+      \ '.___.' /
+     .'  \-=-/  '.
+    /   /`   `\   \
+   (//./       \.\\)
+    `"`         `"`
+
+ __  __    _    ____  ____  _   _ ____ ___    _    _     
+|  \/  |  / \  |  _ \/ ___|| | | |  _ \_ _|  / \  | |    
+| |\/| | / _ \ | |_) \___ \| | | | |_) | |  / _ \ | |    
+| |  | |/ ___ \|  _ < ___) | |_| |  __/| | / ___ \| |___ 
+|_|  |_/_/   \_\_| \_\____/ \___/|_|  |___/_/   \_\_____|
+
+Built on Aug 19 2021 at 12:55:02
+
+Available commands:
+r - reset stm32
+s - read sensors
+o - Switch on DIG peripherals
+f - Switch off DIG peripherals
+n - Set NAND boot
+e - enable ethernet
+q - Emergency power off
+p - Enter UART passthrough (no return!)
+1 - Boot Som QSPI
+2 - Boot Som SD
+h - this help
+
+Will autoboot from QSPI after 3000 milliseconds, press any key to interrupt autoboot
+
+```
+
++ Before the 3s timeout has passed press '2' in the serial terminal to get the marsupial to boot from the micro SD card. If you miss the 3s timeout simply power the unit off then on again and retry
+
++ The following text should be shown in the serial terminal
+
+```
+Autoboot interrupted
+booting from SD
+Setting up SOM - stage 1
+TCA95XX: Set 0040
+33
+TCA95XX: Set 0001
+Power good!
+18
+Setting up SOM - stage 2
+TCA95XX: Set 8000
+TCA95XX: Set 4000
+TCA95XX: Set 0002
+Power good!
+TCA95XX: Set 0004
+Power not good yet
+Power good!
+TCA95XX: Set 0008
+Power good!
+TCA95XX: Set 0010
+Power good!
+TCA95XX: Set 0020
+Power good!
+TCA95XX: Set 0080
+DONE: False
+INIT_B: False
+ERR_STATUS: False
+ERR_OUT: False
+PG_33V: True
+EN_18V: True
+
+TCA95XX: Read FFFF
+EN_LPD:  Enabled
+LP_GOOD: True
+EN_FPD:  Enabled
+PG_FPD:  True
+EN_PL:   Enabled
+PG_PL:   True
+EN_DDR:  Enabled
+PG_DDR:  True
+EN_PSGT: Enabled
+PG_PGST: True
+EN_GT_R: Enabled
+PG_GT_R: True
+MR:      Enabled
+EN_10V:  Enabled
+NAND_EN: Enabled
+SD_EN:   Enabled
+
+Reading INA219s from MCU_I2C
+INA219 MCU 1.8V: 1.808 V 12.600 mA
+INA219 MCU 3.3V: 3.312 V 4.600 mA
+INA219 SOM 1.8V: 1.812 V 31.000 mA
+INA219 SOM 3.3V: 3.288 V 535.000 mA
+Done setting up SOM
+
+```
++ Now press 'p' to boot into the SD card linux image.
    
 + Once linux is running, login at the prompt with user `root` and an empty password.
    
@@ -156,6 +277,13 @@ intended to be the common layer between all boards using Bitbake
 
 The name of your recipe should then be added to the packagegroup for the lemsdr in `lemdig-image/meta-lemsdr/recipes-payload/packagegroups/packagegroup-lemsdr-system.bb` 
 
+### Updating the FPGA image
+
+The default FPGA bitfile can be updated by updating the file  
+ 
+   `lemdig-image/meta-lemdsdr/recipes-bsp/bootbin-onthefly/files/design_1_wrapper.bit`
+
+with your own design
 ### Adding Python Dependencies
 
 Python dependencies are added to the meta-spire layer.

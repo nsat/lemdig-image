@@ -1,0 +1,13 @@
+diff --git a/meta/recipes-core/initscripts/initscripts-1.0/populate-volatile.sh b/meta/recipes-core/initscripts/initscripts-1.0/populate-volatile.sh
+index ce4622a5e5..74e1e6e17c 100755
+--- a/populate-volatile.sh
++++ b/populate-volatile.sh
+@@ -70,7 +70,7 @@ mk_dir() {
+ link_file() {
+ 	EXEC="
+ 	if [ -L \"$2\" ]; then
+-		[ \"\$(readlink -f \"$2\")\" != \"$1\" ] && { rm -f \"$2\"; ln -sf \"$1\" \"$2\"; };
++		[ \"\$(readlink \"$2\")\" != \"$1\" ] && { rm -f \"$2\"; ln -sf \"$1\" \"$2\"; };
+ 	elif [ -d \"$2\" ]; then
+ 		if awk '\$2 == \"$2\" {exit 1}' /proc/mounts; then
+ 			cp -a $2/* $1 2>/dev/null;

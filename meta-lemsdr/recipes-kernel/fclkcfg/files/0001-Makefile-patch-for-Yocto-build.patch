@@ -1,0 +1,34 @@
+diff --git a/Makefile b/Makefile
+index 8d0ccdd..3e4b972 100644
+--- a/Makefile
++++ b/Makefile
+@@ -1,23 +1,10 @@
+-HOST_ARCH       ?= $(shell uname -m | sed -e s/arm.*/arm/ -e s/aarch64.*/arm64/)
+-ARCH            ?= $(shell uname -m | sed -e s/arm.*/arm/ -e s/aarch64.*/arm64/)
+-KERNEL_SRC_DIR  ?= /lib/modules/$(shell uname -r)/build
+-
+-ifeq ($(ARCH), arm)
+- ifneq ($(HOST_ARCH), arm)
+-   CROSS_COMPILE  ?= arm-linux-gnueabihf-
+- endif
+-endif
+-ifeq ($(ARCH), arm64)
+- ifneq ($(HOST_ARCH), arm64)
+-   CROSS_COMPILE  ?= aarch64-linux-gnu-
+- endif
+-endif
+-
+ obj-m := fclkcfg.o
+-
++SRC := $(shell pwd)
+ all:
+-	make -C $(KERNEL_SRC_DIR) ARCH=$(ARCH) CROSS_COMPILE=$(CROSS_COMPILE) M=$(PWD) modules
++	$(MAKE) -C $(KERNEL_SRC) M=$(SRC)
+ 
+-clean:
+-	make -C $(KERNEL_SRC_DIR) ARCH=$(ARCH) CROSS_COMPILE=$(CROSS_COMPILE) M=$(PWD) clean
++modules_install:
++	$(MAKE) -C $(KERNEL_SRC) M=$(SRC) modules_install
+ 
++clean:
++	rm -f *.o *.ko

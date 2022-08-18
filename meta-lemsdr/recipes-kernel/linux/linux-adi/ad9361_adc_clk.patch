@@ -1,0 +1,87 @@
+diff --git a/drivers/iio/adc/ad9361.c b/drivers/iio/adc/ad9361.c
+index de4cf1cca3ce..3d2af0f36c77 100644
+--- a/drivers/iio/adc/ad9361.c
++++ b/drivers/iio/adc/ad9361.c
+@@ -4245,7 +4245,7 @@ static int ad9361_calculate_rf_clock_chain(struct ad9361_rf_phy *phy,
+ 	unsigned long clktf, clkrf, adc_rate = 0, dac_rate = 0;
+ 	u64 bbpll_rate;
+ 	int i, index_rx = -1, index_tx = -1, tmp;
+-	u32 div, tx_intdec, rx_intdec, recursion = 1;
++	u32 div, min_adc_clk, tx_intdec, rx_intdec, recursion = 1;
+ 	const char clk_dividers[][4] = {
+ 		{12,3,2,2},
+ 		{8,2,2,2},
+@@ -4266,7 +4266,17 @@ static int ad9361_calculate_rf_clock_chain(struct ad9361_rf_phy *phy,
+ 	else
+ 		tx_intdec = st->tx_fir_int;
+ 
+-	if ((rate_gov == 1) && ((rx_intdec * tx_sample_rate * 8) < MIN_ADC_CLK)) {
++	// Spire mod: If the requested sampling rate is achievable using the 25Mhz
++	// ADC minimum, then use it. But if we need a lower sample rate, then
++	// use the existing 11.1Mhz minimum to allow this to work even though it's
++	// outside the recommended range. LEMSDR needs this to run 1-2Mhz sample rates.
++	if (tx_sample_rate > (MIN_ADC_CLK / 12)) {
++		min_adc_clk = MIN_ADC_CLK;
++	} else {
++		min_adc_clk = MIN_ADC_CLK_REAL;
++	}
++
++	if ((rate_gov == 1) && ((rx_intdec * tx_sample_rate * 8) < min_adc_clk)) {
+ 		recursion = 0;
+ 		rate_gov = 0;
+ 	}
+@@ -4285,7 +4295,7 @@ static int ad9361_calculate_rf_clock_chain(struct ad9361_rf_phy *phy,
+ 		adc_rate = clkrf * clk_dividers[i][0];
+ 		dac_rate = clktf * clk_dividers[i][0];
+ 
+-		if ((adc_rate <= MAX_ADC_CLK) && (adc_rate >= MIN_ADC_CLK)) {
++		if ((adc_rate <= MAX_ADC_CLK) && (adc_rate >= min_adc_clk)) {
+ 
+ 
+ 			if (dac_rate > adc_rate)
+@@ -4318,7 +4328,7 @@ static int ad9361_calculate_rf_clock_chain(struct ad9361_rf_phy *phy,
+ 			++rate_gov, rx_path_clks, tx_path_clks);
+ 	} else if ((index_tx < 0 || index_tx > 6 || index_rx < 0 || index_rx > 6)) {
+ 		dev_err(&phy->spi->dev, "%s: Failed to find suitable dividers: %s",
+-		__func__, (adc_rate < MIN_ADC_CLK) ? "ADC clock below limit" : "BBPLL rate above limit");
++		__func__, (adc_rate < min_adc_clk) ? "ADC clock below limit" : "BBPLL rate above limit");
+ 
+ 		return -EINVAL;
+ 	}
+@@ -7953,7 +7963,7 @@ static int ad9361_phy_read_avail(struct iio_dev *indio_dev,
+ 			if (int_dec == 4)
+ 				max = MAX_TX_HB1 / 4;
+ 
+-			st->tx_sampl_freq_avail[0] = MIN_ADC_CLK / (12 * int_dec);
++			st->tx_sampl_freq_avail[0] = MIN_ADC_CLK_REAL / (12 * int_dec);
+ 			st->tx_sampl_freq_avail[1] = 1;
+ 			st->tx_sampl_freq_avail[2] = max;
+ 
+@@ -7969,7 +7979,7 @@ static int ad9361_phy_read_avail(struct iio_dev *indio_dev,
+ 			if (int_dec == 4)
+ 				max = MAX_RX_HB1 / 4;
+ 
+-			st->rx_sampl_freq_avail[0] = MIN_ADC_CLK / (12 * int_dec);
++			st->rx_sampl_freq_avail[0] = MIN_ADC_CLK_REAL / (12 * int_dec);
+ 			st->rx_sampl_freq_avail[1] = 1;
+ 			st->rx_sampl_freq_avail[2] = max;
+ 
+diff --git a/drivers/iio/adc/ad9361_regs.h b/drivers/iio/adc/ad9361_regs.h
+index 980776b8949f..fb0129854844 100644
+--- a/drivers/iio/adc/ad9361_regs.h
++++ b/drivers/iio/adc/ad9361_regs.h
+@@ -2793,7 +2793,13 @@
+  */
+ 
+ #define MIN_ADC_CLK			25000000UL /* 25 MHz */
+-//#define MIN_ADC_CLK			(MIN_BBPLL_FREQ / MAX_BBPLL_DIV) /* 11.17MHz */
++/*
++ * Spire mod: Redefining the existing 11.1Mhz "real" limit of the ADC as
++ * the LEMSDR board requires it in order to achieve <2.1 Mhz sampling rates.
++ * The divider selection logic has been updated to use this existing limit
++ * if the requested sampling rate if < 2.1 Mhz.
++ */
++#define MIN_ADC_CLK_REAL	(MIN_BBPLL_FREQ / MAX_BBPLL_DIV) /* 11.17MHz */
+ #define MAX_ADC_CLK			640000000UL /* 640 MHz */
+ #define MAX_DAC_CLK			(MAX_ADC_CLK / 2)
+ 

@@ -1,0 +1,86 @@
+#! /bin/sh
+### BEGIN INIT INFO
+# Provides:          iptables
+# Required-Start:
+# Required-Stop:
+# X-Start-Before:    networking
+# X-Stop-After:      networking
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+# Short-Description: Iptables
+# Description:       Debian init script for iptables
+### END INIT INFO
+
+. /etc/init.d/functions
+
+do_start() {
+    if [ -e "/etc/iptables/iptables.rules" ]; then
+        echo -n "Starting iptables service ... "
+        /usr/sbin/iptables-restore < /etc/iptables/iptables.rules
+        status=$?
+        if [ $status -eq 0 ]; then
+            success
+            echo
+        else
+            failure $status
+            echo
+            exit $status
+        fi
+    else
+        log_action_msg "No rules saved for iptables"
+    fi
+}
+
+do_stop() {
+    echo -n "Stopping iptables service ... "
+    /usr/sbin/iptables -P INPUT ACCEPT
+    /usr/sbin/iptables -P FORWARD ACCEPT
+    /usr/sbin/iptables -P OUTPUT ACCEPT
+    /usr/sbin/iptables -F
+    /usr/sbin/iptables -X
+    status=$?
+    if [ $status -eq 0 ]; then
+        success
+        echo
+    else
+        failure $status
+        echo
+        exit $status
+    fi
+}
+
+do_save() {
+    echo -n "Saving iptables rules ... "
+    /usr/sbin/iptables-save > /etc/iptables/iptables.rules
+    status=$?
+    if [ $status -eq 0 ]; then
+        success
+        echo
+    else
+        failure $status
+        echo
+        exit $status
+    fi
+}
+
+case "$1" in
+    start)
+        do_start
+    ;;
+    stop)
+        do_stop
+    ;;
+    save)
+        do_save
+    ;;
+    restart)
+        do_stop
+        do_start
+    ;;
+    *)
+        echo "Usage: /etc/init.d/iptables {start|stop|restart|save}"
+        exit 1
+    ;;
+esac
+
+exit 0

@@ -1,0 +1,10 @@
+DESCRIPTION = "python-futures"
+LICENSE = "BSD"
+LIC_FILES_CHKSUM = "file://LICENSE;md5=dd6708d05936d3f6c4e20ed14c87b5e3"
+
+SRC_URI[md5sum] = "ced2c365e518242512d7a398b515ff95"
+SRC_URI[sha256sum] = "0542525145d5afc984c88f914a0c85c77527f65946617edb5274f72406f981df"
+
+PYPI_PACKAGE = "futures"
+
+inherit pypi setuptools
