@@ -33,3 +33,4 @@
 };
 
 #include "system-user.dtsi"
+#include "device_tree_patch.dtsi"

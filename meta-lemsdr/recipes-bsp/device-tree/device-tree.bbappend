@@ -6,6 +6,7 @@ SRC_URI += "file://system-user.dtsi \
             file://system-conf.dtsi \
             file://zynqmp.dtsi \
             file://zynqmp-clk-ccf.dtsi \
+            file://device_tree_patch.dtsi \
             file://zynqmp-te0803.dts"
 
 COMPATIBLE_MACHINE = "\
