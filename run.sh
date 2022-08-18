@@ -21,11 +21,12 @@ SKIP_SERVICES_START=${SKIP_SERVICES_START:-1}
 ARG1=${@:$OPTIND:1}
 shift
 
+DOCKER_OPT=""
+
 if [ "x$ARG1" == "xshell" ]; then
-    DOCKER_OPT=""
     CMD="/bin/bash"
 elif [ "x$ARG1" == "xbuild" ]; then
-    CMD="/lemdig/configure.sh && /lemdig/build.sh"
+    CMD="/lemdig/build.sh"
 else
     usage
     exit 1

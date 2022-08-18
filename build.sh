@@ -1,5 +1,8 @@
 #!/bin/bash -e
 
+# Run configure 
+/lemdig/configure.sh
+
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null && pwd )"
 echo "SCRIPT_DIR - ${SCRIPT_DIR}"
 
