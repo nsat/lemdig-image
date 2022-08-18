@@ -46,11 +46,6 @@ if [ -t 1 ] && [ "$NO_TERM_OUTPUT" != "1" ]; then
     DOCKER_OPT="$DOCKER_OPT -it"
 fi
 
-# Since bibake doesn't run as root, need to make sure it can write .tlc file that is often owned by root
-if [ -e .tlc_configured_systems ]; then
-    sudo chmod 777 .tlc_configured_systems
-fi
-
 # Specifically used to allow Jenkins to use a tag besides "latest"
 DOCKER_TAG=${DOCKER_TAG:-latest}
 
@@ -62,7 +57,7 @@ docker run \
     -e YOCTO_DL_DIR=$DL_DIR \
     -e YOCTO_SSTATE_DIR=$SSTATE_DIR \
     -e YOCTO_SSTATE_MIRRORS="$SSTATE_MIRRORS" \
-    -e USER_ID=$(id -u spire) \
+    -e USER_ID=$(id -u) \
     -e SKIP_SERVICES_START=$SKIP_SERVICES_START \
     -v $DL_DIR:$DL_DIR \
     -v $SSTATE_DIR:$SSTATE_DIR \
@@ -70,8 +65,6 @@ docker run \
     -v $SCRIPT_DIR:/lemdig \
     -v /var/run/docker.sock:/var/run/docker.sock \
     -v /dev/serial:/dev/serial \
-    -v $HOME/.ssh:/home/spire/.ssh:ro \
-    -v $HOME/.aws:/home/spire/.aws:ro \
     --net=host \
     --privileged \
     -w /lemdig \
