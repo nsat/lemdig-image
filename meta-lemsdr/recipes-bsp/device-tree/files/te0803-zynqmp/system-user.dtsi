@@ -96,21 +96,34 @@
 };
 
 &i2c0 {
-    /* LEMSDR I2C devices */
-    rf_current_33v: ina219@44 {
+    /* CAMLINK I2C devices */
+    camlink_3v3: ina219@40 {
         compatible = "ti,ina219";
-        reg = <0x44>;
-        shunt-resistor = <160000>;
+        reg = <0x40>;
+        shunt-resistor = <10000>;
     };
-    rf_temp: tmp102@48 {
-        compatible = "ti,tmp102";
+    camlink_heater: ina219@41 {
+        compatible = "ti,ina219";
+        reg = <0x41>;
+        shunt-resistor = <10000>;
+    };
+    camlink_12v: ina219@46 {
+        compatible = "ti,ina219";
+        reg = <0x46>;
+        shunt-resistor = <10000>;
+    };
+    camlink_temp1: tmp100@48 {
+        compatible = "ti,tmp100";
         reg = <0x48>;
     };
-    rf_eeprom: eeprom@50 {
-        compatible = "at,24c02";
-        reg = <0x50>;
-        pagesize = <0x10>;
-    };  
+    camlink_temp2: tmp100@4a {
+        compatible = "ti,tmp100";
+        reg = <0x4a>;
+    };
+    camlink_temp3: tmp100@4c {
+        compatible = "ti,tmp100";
+        reg = <0x4c>;
+    };
 };
 
 &i2c1 {
