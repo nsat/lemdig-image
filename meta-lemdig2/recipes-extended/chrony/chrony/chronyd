@@ -1,0 +1,80 @@
+#! /bin/bash
+#
+# Written by Miquel van Smoorenburg <miquels@drinkel.ow.org>.
+# Modified for Debian GNU/Linux by Ian Murdock <imurdock@gnu.ai.mit.edu>.
+# Modified for Debian by Christoph Lameter <clameter@debian.org>
+# Modified for chrony by John Hasler <jhasler@debian.org> 1998-2012
+# Modified for Spire Linux by Linus Tan <linus.tan@spire.com>
+
+readonly DAEMON=/usr/sbin/chronyd
+readonly NAME="chronyd"
+readonly DESC="time daemon"
+
+. /etc/init.d/functions || exit 1
+
+test -f $DAEMON || exit 0
+
+#
+# Function that shows the daemon/service status
+#
+status_of_proc () {
+    local pid status
+
+    status=0
+    # pidof output null when no program is running, so no "2>/dev/null".
+    pid=$(pidofproc $NAME) || status=$?
+    case $status in
+    0)
+        echo "$DESC is running ($pid)."
+        exit 0
+        ;;
+    *)
+        echo "$DESC is not running." >&2
+        exit $status
+        ;;
+    esac
+}
+
+case "$1" in
+    start)
+    start-stop-daemon --start --verbose --exec $DAEMON -- -4
+    case "$?" in
+        0) # daemon successfully started
+            ;;
+        1) # daemon already running
+            ;;
+        *) # daemon could not be started
+            echo "$DAEMON failed to start."
+            exit 1
+            ;;
+    esac
+    ;;
+    stop)
+    start-stop-daemon --stop --verbose --oknodo --exec $DAEMON
+    ;;
+    restart|force-reload)
+    echo -n "Restarting $DESC: "
+    start-stop-daemon --stop --quiet --exec $DAEMON
+    sleep 1
+    start-stop-daemon --start --verbose --exec $DAEMON -- -r -4
+    case "$?" in
+        0) # daemon successfully started
+            ;;
+        1) # still running
+            ;;
+        *) # daemon could not be started
+            echo "$DAEMON failed to restart."
+            exit 1
+            ;;
+    esac
+    ;;
+    status)
+    status_of_proc
+    ;;
+    *)
+    echo "Usage: /etc/init.d/chronyd {start|stop|restart|force-reload|status}"
+    exit 1
+    ;;
+esac
+
+exit 0
