@@ -19,23 +19,27 @@ The following information should allow quick installation and building of the Sp
 
 The Ubuntu PC is required to have git installed in order to retreive the Spire Linux for LEMDIG 1.5 repo
 
-    `sudo apt install git`
+    sudo apt install git
     
 Once git is installed the repository can be cloned using
 
-    `git clone https://github.com/nsat/lemdig-image.git`
+    git clone https://github.com/nsat/lemdig-image.git
     
 This should create a git repository in the directory `lemdig-image`
 
 The build runs inside a Docker container and therefore Docker is required to be installed and the user added to the docker group.
 
-There is a script which will do this from within the `lemdig-image` directory
-
-    `cd lemdig-image`  
-    `./build-docker.sh`  
+To install Docker (only required once) execute the following commands:
+    
+    sudo apt-get install -y docker.io
+    sudo usermod -a -G docker ${USER}
     
 **NB: You must now reboot your Ubuntu PC to complete the installation of Docker**
 
+To Build docker container (only required once) execute the following commands:
+    
+    docker build -t yocto-lemdig .
+    
 ### Building
 
 The Yocto build takes place in the `/opt/lemdig-image/lemsdr/poky` directory on the Ubuntu PC and this is mapped into a volume in the Docker container, making the build system and its output accessible to both.
@@ -192,7 +196,11 @@ INA219 SOM 3.3V: 3.288 V 535.000 mA
 Done setting up SOM
 
 ```
-+ Now press 'p' to boot into the SD card linux image.
++ Now press 'p' to boot into the u-boot on SD card
+
++ During the u-boot countdown press ENTER to drop into the u-boot prompt then run the following command to boot the system from the SD card
+
+    `run bootcmd_mmc0`  
    
 + Once linux is running, login at the prompt with user `root` and an empty password.
    
