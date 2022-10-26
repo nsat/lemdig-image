@@ -23,7 +23,7 @@
      "bootargs_mmc=root=/dev/mmcblk0p2 ro rootfstype=ext4 rootwait\0" \
      "bootcmd_mmc0=setenv bootargs \"${bootargs_base} ${bootargs_mmc}\" && run loadkernel_mmc0 && run bootkernel\0" \
 -    "ipaddr=10.2.1.3\0"  \
-+    "ipaddr=10.2.1.100\0"  \
++    "ipaddr=10.2.1.103\0"  \
      "serverip=10.2.1.6\0" \
      "netmask=255.255.255.0\0" \
      "loadkernel_tftp=tftpboot ${kernel_load_address} ${kernel_image}\0" \

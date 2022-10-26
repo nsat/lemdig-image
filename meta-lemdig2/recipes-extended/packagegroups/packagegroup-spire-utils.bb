@@ -25,6 +25,8 @@ RDEPENDS_packagegroup-spire-utils-basic = "\
     bc \
     coreutils \
     cpio \
+    chrony \
+    chronyc \
     e2fsprogs \
     ed \
     file \
@@ -40,6 +42,7 @@ RDEPENDS_packagegroup-spire-utils-basic = "\
     procps \
     psmisc \
     sed \
+    spire-public-keys-only \
     time \
     util-linux \
     os-release \
