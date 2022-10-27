@@ -55,3 +55,9 @@ d root root 0755 /media/nand1_prog/local/src none
 # Add links to /var/lib for chrony
 d root root 0755 /media/nand2_data/var/lib/chrony none
 l root root 0755 /var/lib/chrony /media/nand2_data/var/lib/chrony
+
+# Add tasking api directories
+d root root 0755 /media/nand2_data/signaling none
+d root root 0755 /media/nand2_data/signaling/inbox none
+d root root 0755 /media/nand2_data/signaling/window_configs none
+l root root 0755 /signaling /media/nand2_data/signaling
