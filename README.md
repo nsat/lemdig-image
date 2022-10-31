@@ -213,7 +213,7 @@ Done setting up SOM
 
 The board should now boot into the image from the NAND flash  
 
-4. **Building bitbake recipes manually**  
+3. **Building bitbake recipes manually**  
     
     Within docker shell you can open a normal bitbake environment and build individual recipes for development purposes  
     
