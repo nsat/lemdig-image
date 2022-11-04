@@ -25,6 +25,9 @@ source "oe-init-build-env"
 
 rm -rf tmp
 
+# Ensure root.ubifs is rebuilt
+bitbake -c cleanall lemdig-sd-complete
+
 # Do build
 bitbake lemdig-image
 #bitbake lemdig-image-qemu

@@ -1,0 +1,22 @@
+From b3aeed31573d331c39615de710809beb9de5983b Mon Sep 17 00:00:00 2001
+From: Robert McGowan <robert.mcgowan@spire.com>
+Date: Wed, 2 Nov 2022 15:08:53 +0000
+Subject: [PATCH] change path to oort-agent for lemdig
+
+---
+ init.d/oort-agent | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/init.d/oort-agent b/init.d/oort-agent
+index 6821ec7..b977910 100755
+--- a/init.d/oort-agent
++++ b/init.d/oort-agent
+@@ -1,7 +1,7 @@
+ #!/bin/sh
+ 
+ PID="/var/run/oort-agent.pid"
+-CMD="/usr/local/bin/oort-agent"
++CMD="/usr/bin/oort-agent"
+ WORKDIR="/media/sd1/oort-agent"
+ SYSLOG_IDENT="oort-agent"
+ 

@@ -89,6 +89,7 @@ RDEPENDS_packagegroup-spire-utils-extended = "\
     devmem2 \
     screen \
     sysbench \
+    oort \
     "
 
 RDEPENDS_packagegroup-spire-utils-services = "\    
