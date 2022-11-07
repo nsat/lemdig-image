@@ -92,6 +92,7 @@ RDEPENDS_packagegroup-spire-utils-extended = "\
     oort \
     lemur-python-oort \
     lemur-python3-oort \
+    lemur-c-oort \
     "
 
 RDEPENDS_packagegroup-spire-utils-services = "\    
