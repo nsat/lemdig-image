@@ -90,6 +90,8 @@ RDEPENDS_packagegroup-spire-utils-extended = "\
     screen \
     sysbench \
     oort \
+    lemur-python-oort \
+    lemur-python3-oort \
     "
 
 RDEPENDS_packagegroup-spire-utils-services = "\    
