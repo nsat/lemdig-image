@@ -65,7 +65,7 @@ The Yocto build takes place in the `/opt/lemdig-image/lemsdr/poky` directory on 
     
     `/opt/lemdig-image/lemsdr/poky/build/tmp/deploy/images/marsupial-zynqmp/lemdig-image-bootstrap-complete-marsupial-zynqmp.wic` 
 
-    This file can be written to a micro SD card and flashed to the marsupial as described in step 3  
+    This file can be written to a micro SD card and flashed to the marsupial as described in step 2  
     
 2. **Flash the board using a micro SD card (Requires Min 8GB micro SD card)**
 
