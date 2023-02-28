@@ -17,11 +17,12 @@ The following information should allow quick installation and building of the Sp
 
 ### Installation
 
-The Ubuntu PC is required to have git installed in order to retreive the Spire Linux for LEMDIG 1.5 repo
+The Ubuntu PC is required to have git and git-lfs installed installed in order to retreive the Spire Linux for LEMDIG 1.5 repo
 
     sudo apt install git
+    sudo apt install git-lfs
     
-Once git is installed the repository can be cloned using
+Once git and git-lfs are installed the repository can be cloned using
 
     git clone https://github.com/nsat/lemdig-image.git
     
