@@ -243,6 +243,7 @@ The board should now boot into the image from the NAND flash
     Execute the following commands in an ubuntu terminal
     
     `cd fpga/scripts`
+
     `rm -rf ../build/oni-zynqmp_v1/ ; ./build.sh oni zynqmp v1`
 
     The project will take some time to build and the following artifacts should be generated in the fpga/build/oni-zynqmp_v1/top-level/build/ directory
