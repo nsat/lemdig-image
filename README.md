@@ -238,22 +238,28 @@ The board should now boot into the image from the NAND flash
     `source ./oe-init-build-env`  
     `bitbake opencv`  
 
-Building the Vivado FPGA project
+4. **Building the Vivado FPGA project** (optional)
 
- Execute the following commands in an ubuntu terminal
+    Execute the following commands in an ubuntu terminal
     
     `cd fpga/scripts`
     `rm -rf ../build/oni-zynqmp_v1/ ; ./build.sh oni zynqmp v1`
 
- The project will take some time to build and the following artifacts should be generated in the fpga/build/oni-zynqmp_v1/top-level/build/ directory
+    The project will take some time to build and the following artifacts should be generated in the fpga/build/oni-zynqmp_v1/top-level/build/ directory
  
-    system_1.hdf  system_1_top.bin  system_1_top.bit
+    `system_1.hdf  system_1_top.bin  system_1_top.bit`
 
- In addition a Vivado project file should have been generated in 
+    The `system1.hdf` file can be used to generate device tree files and/or init files for the FSBL.
 
-    fpga/build/oni-zynqmp_v1/top-level/zynqmpONI.vivado/zynqmpONI.vivado.xpr 
+    The `system_1_top.bin` file can be used to dunamically load a bitfile at runtime after the marsupial has booted.
 
- If you open this file in Vivado then you can browse the design
+    The `system_1_top.bit` file can be used to update the default bitfile loaded when the system boots (see below "Updating the FPGA image")
+
+    In addition a Vivado project file should have been generated in 
+
+    `fpga/build/oni-zynqmp_v1/top-level/zynqmpONI.vivado/zynqmpONI.vivado.xpr`
+
+    If you open this file in Vivado then you can browse the design
  
 ## Introduction to BitBake and The Yocto Project
 Spire Linux is built with the
