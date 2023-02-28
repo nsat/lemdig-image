@@ -251,7 +251,7 @@ The board should now boot into the image from the NAND flash
 
     The `system1.hdf` file can be used to generate device tree files and/or init files for the FSBL.
 
-    The `system_1_top.bin` file can be used to dunamically load a bitfile at runtime after the marsupial has booted.
+    The `system_1_top.bin` file can be used to dynamically load a bitfile at runtime after the marsupial has booted.
 
     The `system_1_top.bit` file can be used to update the default bitfile loaded when the system boots (see below "Updating the FPGA image")
 
@@ -259,7 +259,7 @@ The board should now boot into the image from the NAND flash
 
     `fpga/build/oni-zynqmp_v1/top-level/zynqmpONI.vivado/zynqmpONI.vivado.xpr`
 
-    If you open this file in Vivado then you can browse the design
+    You can open this file in Vivado and browse/modify the design.
  
 ## Introduction to BitBake and The Yocto Project
 Spire Linux is built with the
