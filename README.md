@@ -2,6 +2,8 @@
 
 This project contains utility scripts and the Yocto bitBake layers used for building the spire Spire Linux image for the Lemdig 1.5 board. The build produces an SD card image that can be used to flash the Marsupial.
 
+Optionally an example Xilinx Vivado project for the board can be built that supports a Spire board called the LEMSDR. This board is not included with the Marsupial but the project can be used as an example of how to target your own FPGA design for the Marsupial hardware. Please note that this project requires a specific version of Xilinx Vivado (2018.2) to build and will not build correctly with other versions.
+
 **Requirements**
 
 + PC running Ubuntu 20.04.4 (Other Linux distributions may work but are not officially tested/supported)
@@ -10,6 +12,7 @@ This project contains utility scripts and the Yocto bitBake layers used for buil
 + Lemdig 1.5 (Marsupial) board plugged into Minidock V3
 + Min 8GB micro SD card and optionally SD to micro SD adapter
 + Micro USB cable for serial connection between the marsupial and the Ubuntu PC
++ Xilinx Vivado 2018.2
 
 ## Quickstart
 
@@ -40,7 +43,11 @@ To install Docker (only required once) execute the following commands:
 To Build docker container (only required once) execute the following commands:
     
     docker build -t yocto-lemdig .
-    
+
+Xilinx Vivado 2018.2
+
+If you are going to build the Vivado project for the LEMSDR board then visit the Xilinx website to download and install Vivado 2018.2 Webpack Edition. **Note that the software must be installed in the default location i.e. /opt/Xilinx**
+
 ### Building
 
 The Yocto build takes place in the `/opt/lemdig-image/lemsdr/poky` directory on the Ubuntu PC and this is mapped into a volume in the Docker container, making the build system and its output accessible to both.
@@ -230,8 +237,24 @@ The board should now boot into the image from the NAND flash
     `cd /opt/lemdig-image/lemsdr/poky`  
     `source ./oe-init-build-env`  
     `bitbake opencv`  
+
+Building the Vivado FPGA project
+
+ Execute the following commands in an ubuntu terminal
     
-   
+    `cd fpga/scripts`
+    `rm -rf ../build/oni-zynqmp_v1/ ; ./build.sh oni zynqmp v1`
+
+ The project will take some time to build and the following artifacts should be generated in the fpga/build/oni-zynqmp_v1/top-level/build/ directory
+ 
+    system_1.hdf  system_1_top.bin  system_1_top.bit
+
+ In addition a Vivado project file should have been generated in 
+
+    fpga/build/oni-zynqmp_v1/top-level/zynqmpONI.vivado/zynqmpONI.vivado.xpr 
+
+ If you open this file in Vivado then you can browse the design
+ 
 ## Introduction to BitBake and The Yocto Project
 Spire Linux is built with the
 [BitBake](https://en.wikipedia.org/wiki/BitBake) tool, which is a build tool
