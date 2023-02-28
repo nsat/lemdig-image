@@ -1,0 +1,8 @@
+TE0803_4CG_1E/1.0/board.xml filter=lfs diff=lfs merge=lfs -text
+TE0803_4CG_1E/1.0/part0_pins.xml filter=lfs diff=lfs merge=lfs -text
+TE0803_4CG_1E/1.0/preset.xml filter=lfs diff=lfs merge=lfs -text
+TE0803_4CG_1E/1.0/te0803_board.png filter=lfs diff=lfs merge=lfs -text
+TE0803_4CG_1E/2.0/board.xml filter=lfs diff=lfs merge=lfs -text
+TE0803_4CG_1E/2.0/part0_pins.xml filter=lfs diff=lfs merge=lfs -text
+TE0803_4CG_1E/2.0/preset.xml filter=lfs diff=lfs merge=lfs -text
+TE0803_4CG_1E/2.0/te0803_starterkit.png filter=lfs diff=lfs merge=lfs -text

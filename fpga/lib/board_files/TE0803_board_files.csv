@@ -1,0 +1,37 @@
+CSV_VERSION=1.3
+#Comment:-do not change matrix position or remove CSV_VERSION:
+ID  ,PRODID             ,PARTNAME                   ,BOARDNAME                                  ,SHORTNAME  ,ZYNQFLASHTYP         ,FPGAFLASHTYP                       ,Note
+#1   ,TE0803-ES1         ,xczu3eg-sfvc784-1-i-es1    ,trenz.biz:te0803_es1:part0:1.0             ,es1        ,qspi_dual_parallel   ,mt25qu256-qspi-x8-dual_parallel    ,PCB:1|B:1|I:1|P:1 |R:2GB | not supported by Xilinx Vivado 2018.2 and newer
+#2   ,TE0803-ES1         ,xczu3eg-sfvc784-1-i-es1    ,trenz.biz:te0803_es1_tebf0808:part0:2.0    ,es1_sk     ,qspi_dual_parallel   ,mt25qu256-qspi-x8-dual_parallel    ,PCB:1|B:1|I:1|P:1a|R:2GB | not supported by Xilinx Vivado 2018.2 and newer
+#3   ,TE0803-01-02EG-1E  ,xczu2eg-sfvc784-1-e        ,trenz.biz:te0803_2eg_1e:part0:1.0          ,2eg        ,qspi_dual_parallel   ,mt25qu256-qspi-x8-dual_parallel    ,PCB:1|B:1|I:1|P:2 |R:2GB
+#4   ,TE0803-01-02EG-1E  ,xczu2eg-sfvc784-1-e        ,trenz.biz:te0803_2eg_1e_tebf0808:part0:2.0 ,2eg_sk     ,qspi_dual_parallel   ,mt25qu256-qspi-x8-dual_parallel    ,PCB:1|B:1|I:1|P:2a|R:2GB
+#5   ,TE0803-01-02CG-1E  ,xczu2cg-sfvc784-1-e        ,trenz.biz:te0803_2cg_1e:part0:1.0          ,2cg        ,qspi_dual_parallel   ,mt25qu256-qspi-x8-dual_parallel    ,PCB:1|B:1|I:1|P:3 |R:2GB
+#6   ,TE0803-01-02CG-1E  ,xczu2cg-sfvc784-1-e        ,trenz.biz:te0803_2cg_1e_tebf0808:part0:2.0 ,2cg_sk     ,qspi_dual_parallel   ,mt25qu256-qspi-x8-dual_parallel    ,PCB:1|B:1|I:1|P:3a|R:2GB
+#7   ,TE0803-01-03EG-1E  ,xczu3eg-sfvc784-1-e        ,trenz.biz:te0803_3eg_1e:part0:1.0          ,3eg        ,qspi_dual_parallel   ,mt25qu256-qspi-x8-dual_parallel    ,PCB:1|B:1|I:1|P:2 |R:2GB
+#8   ,TE0803-01-03EG-1E  ,xczu3eg-sfvc784-1-e        ,trenz.biz:te0803_3eg_1e_tebf0808:part0:2.0 ,3eg_sk     ,qspi_dual_parallel   ,mt25qu256-qspi-x8-dual_parallel    ,PCB:1|B:1|I:1|P:2a|R:2GB
+#9   ,TE0803-01-03CG-1E  ,xczu3cg-sfvc784-1-e        ,trenz.biz:te0803_3cg_1e:part0:1.0          ,3cg        ,qspi_dual_parallel   ,mt25qu256-qspi-x8-dual_parallel    ,PCB:1|B:1|I:1|P:3 |R:2GB
+#10  ,TE0803-01-03CG-1E  ,xczu3cg-sfvc784-1-e        ,trenz.biz:te0803_3cg_1e_tebf0808:part0:2.0 ,3cg_sk     ,qspi_dual_parallel   ,mt25qu256-qspi-x8-dual_parallel    ,PCB:1|B:1|I:1|P:3a|R:2GB
+#11  ,TE0803-01-02EG-1EA ,xczu2eg-sfvc784-1-e        ,trenz.biz:te0803_2eg_1e:part0:1.0          ,2eg        ,qspi_dual_parallel   ,mt25qu512-qspi-x8-dual_parallel    ,PCB:1|B:1|I:1|P:2 |R:2GB
+#12  ,TE0803-01-02EG-1EA ,xczu2eg-sfvc784-1-e        ,trenz.biz:te0803_2eg_1e_tebf0808:part0:2.0 ,2eg_sk     ,qspi_dual_parallel   ,mt25qu512-qspi-x8-dual_parallel    ,PCB:1|B:1|I:1|P:2a|R:2GB
+#13  ,TE0803-01-02CG-1EA ,xczu2cg-sfvc784-1-e        ,trenz.biz:te0803_2cg_1e:part0:1.0          ,2cg        ,qspi_dual_parallel   ,mt25qu512-qspi-x8-dual_parallel    ,PCB:1|B:1|I:1|P:3 |R:2GB
+#14  ,TE0803-01-02CG-1EA ,xczu2cg-sfvc784-1-e        ,trenz.biz:te0803_2cg_1e_tebf0808:part0:2.0 ,2cg_sk     ,qspi_dual_parallel   ,mt25qu512-qspi-x8-dual_parallel    ,PCB:1|B:1|I:1|P:3a|R:2GB
+#15  ,TE0803-01-03EG-1EA ,xczu3eg-sfvc784-1-e        ,trenz.biz:te0803_3eg_1e:part0:1.0          ,3eg        ,qspi_dual_parallel   ,mt25qu512-qspi-x8-dual_parallel    ,PCB:1|B:1|I:1|P:2 |R:2GB
+#16  ,TE0803-01-03EG-1EA ,xczu3eg-sfvc784-1-e        ,trenz.biz:te0803_3eg_1e_tebf0808:part0:2.0 ,3eg_sk     ,qspi_dual_parallel   ,mt25qu512-qspi-x8-dual_parallel    ,PCB:1|B:1|I:1|P:2a|R:2GB
+#17  ,TE0803-01-03CG-1EA ,xczu3cg-sfvc784-1-e        ,trenz.biz:te0803_3cg_1e:part0:1.0          ,3cg        ,qspi_dual_parallel   ,mt25qu512-qspi-x8-dual_parallel    ,PCB:1|B:1|I:1|P:3 |R:2GB
+#18  ,TE0803-01-03CG-1EA ,xczu3cg-sfvc784-1-e        ,trenz.biz:te0803_3cg_1e_tebf0808:part0:2.0 ,3cg_sk     ,qspi_dual_parallel   ,mt25qu512-qspi-x8-dual_parallel    ,PCB:1|B:1|I:1|P:3a|R:2GB
+#19  ,TE0803-01-03EG-1EB ,xczu3eg-sfvc784-1-e        ,trenz.biz:te0803_3eg_1e:part0:3.0          ,3egb       ,qspi_dual_parallel   ,mt25qu512-qspi-x8-dual_parallel    ,PCB:1|B:1|I:1|P:4 |R:4GB
+#20  ,TE0803-01-03EG-1EB ,xczu3eg-sfvc784-1-e        ,trenz.biz:te0803_3eg_1e_tebf0808:part0:4.0 ,3egb_sk    ,qspi_dual_parallel   ,mt25qu512-qspi-x8-dual_parallel    ,PCB:1|B:1|I:1|P:4a|R:4GB
+21  ,TE0803-01-04CG-1EA ,xczu4cg-sfvc784-1-e        ,trenz.biz:te0803_4cg_1e:part0:1.0          ,4cg        ,qspi_dual_parallel   ,mt25qu512-qspi-x8-dual_parallel    ,PCB:1|B:1|I:1|P:3 |R:2GB
+22  ,TE0803-01-04CG-1EA ,xczu4cg-sfvc784-1-e        ,trenz.biz:te0803_4cg_1e_tebf0808:part0:2.0 ,4cg_sk     ,qspi_dual_parallel   ,mt25qu512-qspi-x8-dual_parallel    ,PCB:1|B:1|I:1|P:3a|R:2GB
+#23  ,TE0803-01-04EV-1EA ,xczu4ev-sfvc784-1-e        ,trenz.biz:te0803_4ev_1e:part0:1.0          ,4ev        ,qspi_dual_parallel   ,mt25qu512-qspi-x8-dual_parallel    ,PCB:1|B:1|I:1|P:3 |R:2GB
+#24  ,TE0803-01-04EV-1EA ,xczu4ev-sfvc784-1-e        ,trenz.biz:te0803_4ev_1e_tebf0808:part0:2.0 ,4ev_sk     ,qspi_dual_parallel   ,mt25qu512-qspi-x8-dual_parallel    ,PCB:1|B:1|I:1|P:3a|R:2GB
+#25  ,TE0803-01-04EV-1E3 ,xczu4ev-sfvc784-1-e        ,trenz.biz:te0803_4ev_1e:part0:1.0          ,4ev        ,qspi_dual_parallel   ,mt25qu512-qspi-x8-dual_parallel    ,PCB:1|B:1|I:1|P:3 |R:2GB
+#26  ,TE0803-01-04EV-1E3 ,xczu4ev-sfvc784-1-e        ,trenz.biz:te0803_4ev_1e_tebf0808:part0:2.0 ,4ev_sk     ,qspi_dual_parallel   ,mt25qu512-qspi-x8-dual_parallel    ,PCB:1|B:1|I:1|P:3a|R:2GB
+#27  ,TE0803-01-04EG-1EA ,xczu4eg-sfvc784-1-e        ,trenz.biz:te0803_4eg_1e:part0:1.0          ,4eg        ,qspi_dual_parallel   ,mt25qu512-qspi-x8-dual_parallel    ,PCB:1|B:1|I:1|P:3 |R:2GB
+#28  ,TE0803-01-04EG-1EA ,xczu4eg-sfvc784-1-e        ,trenz.biz:te0803_4eg_1e_tebf0808:part0:2.0 ,4eg_sk     ,qspi_dual_parallel   ,mt25qu512-qspi-x8-dual_parallel    ,PCB:1|B:1|I:1|P:3a|R:2GB
+29  ,TE0803-01-04CG-1EB ,xczu4cg-sfvc784-1-e        ,trenz.biz:te0803_4cg_1e:part0:1.0          ,4cg        ,qspi_dual_parallel   ,mt25qu01g-qspi-x8-dual_parallel    ,PCB:1|B:1|I:1|P:3 |R:2GB
+30  ,TE0803-01-04CG-1EB ,xczu4cg-sfvc784-1-e        ,trenz.biz:te0803_4cg_1e_tebf0808:part0:2.0 ,4cg_sk     ,qspi_dual_parallel   ,mt25qu01g-qspi-x8-dual_parallel    ,PCB:1|B:1|I:1|P:3a|R:2GB
+#31  ,TE0803-01-05EV-1EA ,xczu5ev-sfvc784-1-e        ,trenz.biz:te0803_5ev_1e:part0:1.0          ,5ev        ,qspi_dual_parallel   ,mt25qu512-qspi-x8-dual_parallel    ,PCB:1|B:1|I:1|P:3 |R:2GB
+#32  ,TE0803-01-05EV-1EA ,xczu5ev-sfvc784-1-e        ,trenz.biz:te0803_5ev_1e_tebf0808:part0:2.0 ,5ev_sk     ,qspi_dual_parallel   ,mt25qu512-qspi-x8-dual_parallel    ,PCB:1|B:1|I:1|P:3a|R:2GB
+#33  ,TE0803-01-05EV-1IA ,xczu5ev-sfvc784-1-i        ,trenz.biz:te0803_5ev_1i:part0:1.0          ,5ev_i      ,qspi_dual_parallel   ,mt25qu512-qspi-x8-dual_parallel    ,PCB:1|B:1|I:1|P:3 |R:2GB
+#34  ,TE0803-01-05EV-1IA ,xczu5ev-sfvc784-1-i        ,trenz.biz:te0803_5ev_1i_tebf0808:part0:2.0 ,5ev_i_sk   ,qspi_dual_parallel   ,mt25qu512-qspi-x8-dual_parallel    ,PCB:1|B:1|I:1|P:3a|R:2GB
