@@ -46,7 +46,7 @@ To Build docker container (only required once) execute the following commands:
 
 Xilinx Vivado 2018.2
 
-If you are going to build the Vivado project for the LEMSDR board then visit the Xilinx website to download and install Vivado 2018.2 Webpack Edition. **Note that the software must be installed in the default location i.e. /opt/Xilinx**
+If you are going to build the Vivado project for the LEMSDR board then visit the Xilinx website to download and install Vivado 2018.2 Webpack Edition for linux. **Note that the software must be installed in the default location i.e. /opt/Xilinx**
 
 ### Building
 
