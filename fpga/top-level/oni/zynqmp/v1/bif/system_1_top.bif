@@ -1,0 +1,4 @@
+all:
+{
+        [destination_device = pl] build/system_1_top.bit
+}

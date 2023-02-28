@@ -1,0 +1,6 @@
+vivado*
+.Xil
+.xml
+xgui
+tmp/
+hdl/*/

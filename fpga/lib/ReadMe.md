@@ -1,0 +1,3 @@
+- ad_ip_cores_v3.tar.gz are the analog devices IPs taken from the release [hdl_2016_r2](https://github.com/analogdevicesinc/hdl/releases/tag/2016_r2)
+- ad_ip_cores_v1.tar.gz are the analog devices IPs taken from the release [hdl_2018_r2](https://github.com/analogdevicesinc/hdl/releases/tag/2018_r2)
+- ad_ip_cores_v2.tar.gz are also taken from [hdl_2018_r2](https://github.com/analogdevicesinc/hdl/releases/tag/2018_r2) but with some minor differences in it where as used them for Myriota V1 and ONI V2.
