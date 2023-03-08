@@ -260,7 +260,7 @@ The board should now boot into the image from the NAND flash
 
     `fpga/build/oni-zynqmp_v1/top-level/zynqmpONI.vivado/zynqmpONI.vivado.xpr`
 
-    You can open this file in Vivado and browse/modify the design.
+    You can open this file in Vivado and browse/modify the design. Note that this design contains IP to control an Analog Devices ADC that is present on the board the project is designed for - you should remove this IP and any other that isn't used in your own design and use the project as a base for your own design.
  
 ## Introduction to BitBake and The Yocto Project
 Spire Linux is built with the
