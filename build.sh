@@ -20,6 +20,10 @@ pwd
 pushd poky &>/dev/null || error "Couldn't enter poky directory"
 pwd
 
+# allow the QEMU build components to work
+git config --global url.http://gitlab.com/qemu-project/capstone.git/.insteadOf git://git.qemu.org/capstone.git
+git config --global url.http://gitlab.com/qemu-project/keycodemapdb.git/.insteadOf git://git.qemu.org/keycodemapdb.git
+
 # Initialize build environment
 source "oe-init-build-env"
 
